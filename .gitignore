@@ -1,0 +1,4 @@
+*.pt
+\kps_annotation
+\data
+*\__pycache__
