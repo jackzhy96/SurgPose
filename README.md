@@ -14,3 +14,9 @@ We provide `kps_annotation_sam2.py` to generate keypoints annotation files. It i
 
 ## Stereo Matching
 We provide code for stereo matching.
+
+## Trajectory Generation
+
+## Robot Movement and Data Collection
+
+## Material List
