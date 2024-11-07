@@ -20,3 +20,7 @@ We provide code for stereo matching.
 ## Robot Movement and Data Collection
 
 ## Material List
+
+## Benchmarks
+
+(SurgPose performance with deeplabcut)[https://github.com/rwjmoore/surgPose_deeplabcut]
