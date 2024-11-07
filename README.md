@@ -23,4 +23,4 @@ We provide code for stereo matching.
 
 ## Benchmarks
 
-(SurgPose performance with deeplabcut)[https://github.com/rwjmoore/surgPose_deeplabcut]
+[SurgPose performance with deeplabcut](https://github.com/rwjmoore/surgPose_deeplabcut)
