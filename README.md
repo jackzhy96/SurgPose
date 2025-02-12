@@ -12,12 +12,30 @@ We provide `kps_annotation_sam2.py` to generate keypoints annotation files. It i
 
 4. For now, you may have to manually get (positive and/or negative) point prompts for each UV paint dot. We consider providing a GUI for easier labeling in the future.
 
-## Stereo Matching
+## Stereo Depth Estimation
 We provide example code for stereo matching based on [RAFT](https://github.com/princeton-vl/RAFT). 
+
+1. <b>Stereo Camera Calibration:</b> SurgPose includes stereo camera parameters `StereoCalibrationDVRK.ini` deriving from [MATLAB 2024b Stereo Camera Calibration](https://www.mathworks.com/help/vision/ug/using-the-stereo-camera-calibrator-app.html) Application. In `StereoCalibrationDVRK.ini`, k0, k1, k4 refer radial distortion coeffients and k2, k3 infer tangential distortion coeffients.
+
+2. <b>Stereo Matching:</b> Run `python depth_estimator.py -d [path to data, e.g. /SurgPose/000000]`. This script is modified from [Deform3DGS](). Note that the image size of SurgPose is 1400x986. In this example script, all images will be resized to 696x488.
 
 ## Trajectory Generation
 
+1. Define the workspace for PSM1 and/or PSM3 (PSM2).
+
+2. Randomly sample N points in the workspace.
+
+3. Generate smooth and periodic end-effector trajectories passing the N points, based on the Curve Fitting Toolbox and Robotic System Toolbox in MATLAB 2024b. Please be aware that this trajectory only have translation, WITHOUT rotation.
+
+4. For articulations, we use periodic functions (sine and cosine) to define the trajectory of each degree of freedom (shaft rotation, wrist joint, gripper rotation, and gripper open angle). You may need to modify parameters of these functions to fit your system and applications.
+
+5. After above steps, you are good to run code `trajectory_generator.m` in MATLAB.
+
+6. Use `` to parse the generated PSM trajectory to make it can be used in Python.
+
 ## Robot Movement and Data Collection
+
+
 
 ## Material List
 
