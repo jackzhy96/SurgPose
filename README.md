@@ -13,7 +13,7 @@ We provide `kps_annotation_sam2.py` to generate keypoints annotation files. It i
 4. For now, you may have to manually get (positive and/or negative) point prompts for each UV paint dot. We consider providing a GUI for easier labeling in the future.
 
 ## Stereo Matching
-We provide code for stereo matching.
+We provide example code for stereo matching based on [RAFT](https://github.com/princeton-vl/RAFT). 
 
 ## Trajectory Generation
 
