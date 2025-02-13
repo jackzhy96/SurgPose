@@ -41,6 +41,11 @@ We provide example code for stereo matching based on [RAFT](https://github.com/p
 
 SurgPose was collected in the [Robotics and Control Laboratory](https://rcl.ece.ubc.ca/) @ UBC. We used da Vinci IS1200 system with the [da Vinci Research Kit](https://github.com/jhu-dvrk) (dVRK). We collected more data for evaluation in the [Laboratory for Computational Sensing and Robotics](https://lcsr.jhu.edu/) @ JHU and used da Vinci SI system with dVRK. 
 
+### Setup in RCL @ UBC
+The dVRK version is 2.1. Run `python data_collection.py`
+
+### Setup in LCSR @ JHU
+
 ## Annotations
 
 ### Keypoints
