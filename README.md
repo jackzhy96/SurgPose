@@ -39,6 +39,8 @@ We provide example code for stereo matching based on [RAFT](https://github.com/p
 
 ## Robot Movement and Data Collection
 
+SurgPose was collected in the [Robotics and Control Laboratory](https://rcl.ece.ubc.ca/) @ UBC. We used da Vinci IS1200 system with the [da Vinci Research Kit](https://github.com/jhu-dvrk) (dVRK). We collected more data for evaluation in the [Laboratory for Computational Sensing and Robotics](https://lcsr.jhu.edu/) @ JHU and used da Vinci SI system with dVRK. 
+
 ## Annotations
 
 ### Keypoints
@@ -63,4 +65,10 @@ Here we list a few baselines that can be used for Surgical Instrument Pose Estim
 We sincerely appreciate [RAFT](), [Segment Anything 2](), [Deform3DGS](). Many thanks to these fantastic works and their open-sourse contribution!
 
 ## Citation
+If you feel SurgPose or this codebase is useful, please consider cite this paper:
+```
+```
+
+## Contact
+If you have any issues, feel free to reach out zijianwu@ece.ubc.ca
 
