@@ -1,5 +1,9 @@
-# SurgPose
-Official Codebase of "SurgPose:  a Dataset for Articulated Robotic Surgical Tool Pose Estimation and Tracking" 
+# SurgPose: a Dataset for Articulated Robotic Surgical Tool Pose Estimation and Tracking
+Accepted by ICRA 2025! See you in Atlanta! 
+
+[![arXiv](https://img.shields.io/badge/arXiv-1234.56789-b31b1b.svg)](https://arxiv.org/abs/1234.56789)
+
+
 
 ## SAM2 for Keypoints Annotation
 We provide `kps_annotation_sam2.py` to generate keypoints annotation files. It is adapted from the official SAM2 code.
