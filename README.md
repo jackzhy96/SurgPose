@@ -35,10 +35,24 @@ We provide example code for stereo matching based on [RAFT](https://github.com/p
 
 ## Robot Movement and Data Collection
 
+## Annotations
 
+### Keypoints
+
+### Forward Kinematics & Joint States from dVRK
+
+### Segmentation Mask
 
 ## Material List
 
-## Benchmarks
+## Related Work and Benchmarks 
 
-[SurgPose performance with deeplabcut](https://github.com/rwjmoore/surgPose_deeplabcut)
+Here we list a few baselines that can be used for Surgical Instrument Pose Estimation. If you have other methods for SurgPose, please reach out and we will add them here.
+
+1. [DeepLabCut](https://github.com/DeepLabCut/DeepLabCut): We provide an example tutorial: [SurgPose performance with deeplabcut](https://github.com/rwjmoore/surgPose_deeplabcut)
+
+2. [YOLO v8](https://docs.ultralytics.com/models/yolov8/): The annotation need to be reformatted to YOLO format.
+
+3. [ViTPose: Simple Vision Transformer Baselines for Human Pose Estimation](https://github.com/ViTAE-Transformer/ViTPose) The annotation need to be reformated to COCO format.
+
+
