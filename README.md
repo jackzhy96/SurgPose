@@ -49,7 +49,7 @@ We provide example code for stereo matching based on [RAFT](https://github.com/p
 
 Here we list a few baselines that can be used for Surgical Instrument Pose Estimation. If you have other methods for SurgPose, please reach out and we will add them here.
 
-1. [DeepLabCut](https://github.com/DeepLabCut/DeepLabCut): We provide an example tutorial: [SurgPose performance with deeplabcut](https://github.com/rwjmoore/surgPose_deeplabcut)
+1. [DeepLabCut](https://github.com/DeepLabCut/DeepLabCut): There is an example tutorial @[RandyMoore](https://github.com/rwjmoore): [SurgPose performance with deeplabcut](https://github.com/rwjmoore/surgPose_deeplabcut)
 
 2. [YOLO v8](https://docs.ultralytics.com/models/yolov8/): The annotation need to be reformatted to YOLO format.
 
