@@ -49,7 +49,7 @@ We provide example code for stereo matching based on [RAFT](https://github.com/p
 
 ## Material List
 
-## Related Work and Benchmarks 
+## Related Works and Benchmarks 
 
 Here we list a few baselines that can be used for Surgical Instrument Pose Estimation. If you have other methods for SurgPose, please reach out and we will add them here.
 
@@ -59,4 +59,8 @@ Here we list a few baselines that can be used for Surgical Instrument Pose Estim
 
 3. [ViTPose: Simple Vision Transformer Baselines for Human Pose Estimation](https://github.com/ViTAE-Transformer/ViTPose) The annotation need to be reformated to COCO format.
 
+## Acknowledgement
+We sincerely appreciate [RAFT](), [Segment Anything 2](), [Deform3DGS](). Many thanks to these fantastic works and their open-sourse contribution!
+
+## Citation
 
