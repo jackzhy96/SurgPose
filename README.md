@@ -72,6 +72,12 @@ We sincerely appreciate [RAFT](), [Segment Anything 2](), [Deform3DGS](). Many t
 ## Citation
 If you feel SurgPose or this codebase is useful, please consider cite this paper:
 ```
+@article{wu2025surgpose,
+  title={SurgPose: a Dataset for Articulated Robotic Surgical Tool Pose Estimation and Tracking},
+  author={Wu, Zijian and Schmidt, Adam and Moore, Randy and Zhou, Haoying and Banks, Alexandre and Kazanzides, Peter and Salcudean, Septimiu E},
+  journal={arXiv preprint arXiv:2502.11534},
+  year={2025}
+}
 ```
 
 ## Contact
