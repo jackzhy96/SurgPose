@@ -21,7 +21,7 @@ We provide example code for stereo matching based on [RAFT](https://github.com/p
 
 1. <b>Stereo Camera Calibration:</b> SurgPose includes stereo camera parameters `StereoCalibrationDVRK.ini` deriving from [MATLAB 2024b Stereo Camera Calibration](https://www.mathworks.com/help/vision/ug/using-the-stereo-camera-calibrator-app.html) Application. In `StereoCalibrationDVRK.ini`, k0, k1, k4 refer radial distortion coeffients and k2, k3 infer tangential distortion coeffients.
 
-2. <b>Stereo Matching:</b> Run `python depth_estimator.py -d [path to data, e.g. /SurgPose/000000]`. This script is modified from [Deform3DGS](). Note that the image size of SurgPose is 1400x986. In this example script, all images will be resized to 696x488.
+2. <b>Stereo Matching:</b> Run `python depth_estimator.py -d [path to data, e.g. /SurgPose/000000]`. This script is modified from [Deform3DGS](). Note that the image size of SurgPose is 1400x986. In this example script, to run RAFT, image size need to be resized to the multiple of 8, e.g. 640x512.
 
 ## Trajectory Generation
 
