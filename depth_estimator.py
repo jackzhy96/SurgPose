@@ -55,31 +55,31 @@ class DepthEstimator(torch.nn.Module):
             new_state_dict[name] = v
         self.model.load_state_dict(new_state_dict)
         
-    def forward(self, imagel, imager, baseline, intrinsics, upsample=True):
+    def forward(self, imagel, imager, baseline, upsample=True): # intrinsics,
         n, _, h, w = imagel.shape
         flow = self.model(imagel.to('cuda'), imager.to('cuda'), upsample=upsample)[0][-1]
         baseline = torch.from_numpy(baseline).to('cuda')
-        focal = torch.from_numpy(intrinsics[0,0][None]).to('cuda')
-        cx = torch.from_numpy(intrinsics[0,2][None]).to('cuda')
-        depth = (baseline[:, None, None] * focal) / (-flow[:, 0] + cx)
+        # focal = torch.from_numpy(intrinsics[0,0][None]).to('cuda')
+        # cx = torch.from_numpy(intrinsics[0,2][None]).to('cuda')
+        # depth = (baseline[:, None, None] * focal) / (-flow[:, 0] + cx)
+        depth = (baseline[:, None, None]) / (-flow[:, 0])
         if not upsample:
             depth/= 8.0  # factor 8 of upsampling
         # valid = (depth > 0) & (depth <= 600.0)
         # depth[~valid] = 0.0
         return depth.unsqueeze(1)
         
-def reformat_dataset(data_dir, img_size=(488, 696)): # (986, 1400)
+def reformat_dataset(data_dir, img_size=(512, 640)):
     """
     Reformat the StereoMIS to the same format as EndoNeRF dataset by stereo depth estimation.
     """
     # Load parameters after rectification
     calib_file = os.path.join(data_dir, 'StereoCalibrationDVRK.ini')
     assert os.path.exists(calib_file), "Calibration file not found."
-    rect = StereoRectifier(calib_file, img_size_new=(img_size[1], img_size[0]), mode='conventional')
+    # rect = StereoRectifier(calib_file, img_size_new=(img_size[1], img_size[0]), mode='conventional')
+    rect = StereoRectifier(calib_file, img_size_new=None, mode='conventional')
     calib = rect.get_rectified_calib()
-    baseline = calib['bf'].astype(np.float32)
-    # print("Baseline: ", baseline)
-    # breakpoint()
+    baseline = calib['bf'].astype(np.float32) # here the baseline this is "baseline * focal length"
     intrinsics = calib['intrinsics']['left'].astype(np.float32)
 
     # Sort images and masks according to the start and end frame indexes
@@ -106,13 +106,32 @@ def reformat_dataset(data_dir, img_size=(488, 696)): # (986, 1400)
     for i, frame in tqdm(enumerate(frames)):
         left_img = torch.from_numpy(cv2.cvtColor(cv2.imread(os.path.join(data_dir, 'left_frames', frame)), cv2.COLOR_BGR2RGB)).permute(2, 0, 1).float()
         right_img = torch.from_numpy(cv2.cvtColor(cv2.imread(os.path.join(data_dir, 'right_frames', frame)), cv2.COLOR_BGR2RGB)).permute(2, 0, 1).float()
+
+        # original size: 1400x986
+        w_orig, h_orig = left_img.shape[2], left_img.shape[1]
+
+        # Rectify the images
+        left_img, right_img = rect(left_img, right_img)
+        # import matplotlib.pyplot as plt
+        # plt.imshow(left_img.permute(1, 2, 0).numpy().astype(np.uint8))
+        # plt.show()
+        # breakpoint()
+
+        # Resize the images
         left_img = resize(left_img)
         right_img = resize(right_img)
+
+        # new size: 640x512
+        w_new, h_new = left_img.shape[2], left_img.shape[1]
+
+        scale = w_new/w_orig # scale = x_new / x_orig
+        
         with torch.no_grad():
-            depth = depth_estimator(left_img[None], right_img[None], baseline[None], intrinsics)
+            depth = depth_estimator(left_img[None], right_img[None], baseline[None] * scale,)
             # import matplotlib.pyplot as plt
             # plt.imshow(depth[0, 0].cpu().numpy())
             # plt.show()
+            # breakpoint()
 
         # Save the data. 
         left_img_np = left_img.permute(1, 2, 0).numpy()
@@ -134,7 +153,7 @@ def reformat_dataset(data_dir, img_size=(488, 696)): # (986, 1400)
         plt.axis('off')
         plt.savefig(os.path.join(depth_vis_dir, name_depth_vis), bbox_inches='tight', pad_inches=0) 
         # plt.show()
-        breakpoint()
+        # breakpoint()
     
 if __name__ == "__main__":
     torch.manual_seed(1234)

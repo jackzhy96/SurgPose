@@ -109,7 +109,7 @@ class StereoRectifier(object):
             tvec=cal['T'],
             ldist_coeffs=cal['ld'],
             rdist_coeffs=cal['rd'],
-            img_size=cal['img_size'],
+            img_size=tuple(map(round, cal['img_size'])), #cal['img_size'],
             mode=self.mode
         )
 
@@ -135,7 +135,7 @@ class StereoRectifier(object):
             calib_rectifed['extrinsics'][:3,3] = np.array([self.r_intr[0, 3] / self.r_intr[0, 0], 0., 0.]) # Tx*f, see cv2 website
         else:
             calib_rectifed['extrinsics'][:3,3] = self.cal['T']
-        calib_rectifed['bf'] = np.sqrt(np.sum(calib_rectifed['extrinsics'][:3, 3] ** 2))*self.l_intr[0, 0]
+        calib_rectifed['bf'] = np.sqrt(np.sum(calib_rectifed['extrinsics'][:3, 3] ** 2))*self.l_intr[0, 0] # baseline * focal_length
         calib_rectifed['bf_orig'] = calib_rectifed['bf']/self.scale
         calib_rectifed['img_size'] = self.img_size
         return calib_rectifed
