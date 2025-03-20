@@ -51,6 +51,7 @@ The dVRK version is 2.1. Run `python data_collection.py`
 ### Keypoints
 
 ### Forward Kinematics & Joint States from dVRK
+The forward kinematics and joint states are obtained using dvrk API `measured_cp()` and `measured_jp()`. These raw data need to be compensated but the relative value is accurate.
 
 ### Segmentation Mask
 
