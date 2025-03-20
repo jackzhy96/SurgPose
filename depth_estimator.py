@@ -69,12 +69,11 @@ class DepthEstimator(torch.nn.Module):
         # depth[~valid] = 0.0
         return depth.unsqueeze(1)
         
-def reformat_dataset(data_dir, img_size=(512, 640)):
+def reformat_dataset(data_dir, calib_file, img_size): # img_size - multiple of 8
     """
     Reformat the StereoMIS to the same format as EndoNeRF dataset by stereo depth estimation.
     """
     # Load parameters after rectification
-    calib_file = os.path.join(data_dir, 'StereoCalibrationDVRK.ini')
     assert os.path.exists(calib_file), "Calibration file not found."
     # rect = StereoRectifier(calib_file, img_size_new=(img_size[1], img_size[0]), mode='conventional')
     rect = StereoRectifier(calib_file, img_size_new=None, mode='conventional')
@@ -128,10 +127,13 @@ def reformat_dataset(data_dir, img_size=(512, 640)):
         
         with torch.no_grad():
             depth = depth_estimator(left_img[None], right_img[None], baseline[None] * scale,)
-            # import matplotlib.pyplot as plt
-            # plt.imshow(depth[0, 0].cpu().numpy())
-            # plt.show()
-            # breakpoint()
+
+            # check the first depth map
+            if i == 0:
+                import matplotlib.pyplot as plt
+                plt.imshow(depth[0, 0].cpu().numpy())
+                plt.show()
+                breakpoint()
 
         # Save the data. 
         left_img_np = left_img.permute(1, 2, 0).numpy()
@@ -161,5 +163,7 @@ if __name__ == "__main__":
     # Set up command line argument parser
     parser = ArgumentParser(description="parameters for dataset format conversions")
     parser.add_argument('--data_dir', '-d', type=str, default='/bigdata/SurgPose/000000/regular/')
+    parser.add_argument('--img_size', '-s', type=int, nargs=2, default=(512, 640), action=check_arg_limits('img_size', 2))
+    parser.add_argument('--calib_file', '-c', type=str, default='/bigdata/SurgPose/000000/StereoCalibrationDVRK.ini')
     args = parser.parse_args()
-    reformat_dataset(args.data_dir)
+    reformat_dataset(args.data_dir, args.calib_file, args.img_size)
