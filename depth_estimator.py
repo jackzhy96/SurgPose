@@ -162,8 +162,8 @@ if __name__ == "__main__":
     np.random.seed(1234)
     # Set up command line argument parser
     parser = ArgumentParser(description="parameters for dataset format conversions")
-    parser.add_argument('--data_dir', '-d', type=str, default='/bigdata/SurgPose/000000/regular/')
+    parser.add_argument('--data_dir', '-d', type=str, required=True, help='Path to the dataset directory')
     parser.add_argument('--img_size', '-s', type=int, nargs=2, default=(512, 640), action=check_arg_limits('img_size', 2))
-    parser.add_argument('--calib_file', '-c', type=str, default='/bigdata/SurgPose/000000/StereoCalibrationDVRK.ini')
+    parser.add_argument('--calib_file', '-c', type=str, required=True, help='Path to the calibration file')
     args = parser.parse_args()
     reformat_dataset(args.data_dir, args.calib_file, args.img_size)

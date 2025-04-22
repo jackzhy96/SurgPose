@@ -1,7 +1,7 @@
 # SurgPose: a Dataset for Articulated Robotic Surgical Tool Pose Estimation and Tracking
 Accepted by ICRA 2025! See you in Atlanta! 
 
-[![arXiv](https://img.shields.io/badge/arXiv-1234.56789-b31b1b.svg)](https://arxiv.org/abs/1234.56789)
+[![arXiv](https://img.shields.io/badge/arXiv-2502.11534-b31b1b.svg)](https://arxiv.org/abs/2502.11534)
 
 
 
