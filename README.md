@@ -2,8 +2,20 @@
 Accepted by ICRA 2025! See you in Atlanta! 
 
 [![arXiv](https://img.shields.io/badge/arXiv-2502.11534-b31b1b.svg)](https://arxiv.org/abs/2502.11534)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.11111149.svg)](https://zenodo.org/badge/latestdoi/{github_id})
 
+## Dataset Description
+This is the assisted annotation. Top-down human pose estimation methods require this label as a part of the input. We provide a reference bounding box label derived from the instance-level SAM 2 segmentation mask. You can also generate the bounding box from the keypoint ground truth or use any object detection algorithm if needed.
 
+### Annotation Structures
+1. Keypoint:
+2. API data:
+3. Bounding box:
+4. Stereo calibration parameters:
+
+### Visualizaion
+1. Keypoints: You may use `kps_vis.py` to visualize keypoints. Run `python kps_vis.py --kpt_path [path to .yaml keypoint files] --frame_dir [path to the folder of frames] --output_dir [path you want to save the frames with keypoints]` to save images with keypoint labels.
+2. Bounding Boxes: You may use `bbox_vis.py` to visualize bounding boxes.
 
 ## SAM2 for Keypoints Annotation
 We provide `kps_annotation_sam2.py` to generate keypoints annotation files. It is adapted from the official SAM2 code.
