@@ -15,7 +15,7 @@ This is the assisted annotation. Top-down human pose estimation methods require 
 
 ### Visualizaion
 1. Keypoints: You may use `kps_vis.py` to visualize keypoints. Run `python kps_vis.py --kpt_path [path to .yaml keypoint files] --frame_dir [path to the folder of frames] --output_dir [path you want to save the frames with keypoints]` to save images with keypoint labels.
-2. Bounding Boxes: You may use `bbox_vis.py` to visualize bounding boxes.
+2. Bounding Boxes: You may use `bbox_vis.py` to visualize bounding boxes. Run `python bbox_vis.py --bbox_path [path to .json bbox files] --frame_dir [path to the folder of frames] --output_dir [path you want to save the frames with bounding boxes]` to save images with bbox labels.
 
 ## SAM2 for Keypoints Annotation
 We provide `kps_annotation_sam2.py` to generate keypoints annotation files. It is adapted from the official SAM2 code.
