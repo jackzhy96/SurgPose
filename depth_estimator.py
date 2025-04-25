@@ -154,6 +154,7 @@ def reformat_dataset(data_dir, calib_file, img_size): # img_size - multiple of 8
         plt.imshow(np.load(os.path.join(depth_dir, name_depth)))
         plt.axis('off')
         plt.savefig(os.path.join(depth_vis_dir, name_depth_vis), bbox_inches='tight', pad_inches=0) 
+        plt.close()
         # plt.show()
         # breakpoint()
     
