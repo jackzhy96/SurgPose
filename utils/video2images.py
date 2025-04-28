@@ -6,7 +6,7 @@ if __name__ == "__main__":
         
         parser = argparse.ArgumentParser()
     
-        parser.add_argument('--video-path', type=str, default='images', help='path to the input video file')
+        parser.add_argument('--video-path', type=str, help='path to the input video file')
         parser.add_argument('--fps', type=int, default=30, help='frames per second')
         parser.add_argument('--output-dir', type=str, help='path to the folder containing output images')
         parser.add_argument('--start-frame', type=int, default=0, help='start frame')
@@ -21,7 +21,7 @@ if __name__ == "__main__":
         fps = args.fps
     
         # Get the path to the output video file
-        output = args.output
+        output = args.output_dir
         os.makedirs(output, exist_ok=True)
     
         # video to images using opencv
