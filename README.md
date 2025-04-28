@@ -1,17 +1,38 @@
 # SurgPose: a Dataset for Articulated Robotic Surgical Tool Pose Estimation and Tracking
-Accepted by ICRA 2025! See you in Atlanta! 
 
 [![arXiv](https://img.shields.io/badge/arXiv-2502.11534-b31b1b.svg)](https://arxiv.org/abs/2502.11534)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.11111149.svg)](https://zenodo.org/badge/latestdoi/{github_id})
 
 ## Dataset Description
-This is the assisted annotation. Top-down human pose estimation methods require this label as a part of the input. We provide a reference bounding box label derived from the instance-level SAM 2 segmentation mask (Please note that there are some wrong bounding boxes due to the segmentation error). You can also generate more compact bounding boxes from the keypoint ground truth or use any object detection algorithm if needed.
+### Dataset Structure
+There are 34 folders (000000-000033) of data. Data of each folder has a structure like:
 
-### Annotation Structures
-1. Keypoint:
-2. API data:
-3. Bounding box:
-4. Stereo calibration parameters:
+    .
+    ├── 000000                  
+    │   ├── keypoints_left.yaml 
+    │   ├── keypoints_right.yaml  
+    │   ├── bbox_left.json
+    │   ├── bbox_right.json
+    │   ├── api_cp_data.yaml
+    │   ├── api_jp_data.yaml
+    │   ├── StereoCalibrationDVRK.ini                
+    │   ├── regular
+    │   │    ├── left_video.mp4
+    │   │    ├── right_video.mp4
+    │   └── green (optional)                 
+    │        ├── left_video.mp4
+    │        ├── right_video.mp4
+    └──...
+### Keypoints
+The `keypoints_left.yaml` and `keypoints_right.yaml` include the keypoint labels of the binocular video. There are a few inaccurate keypoint labels. These inaccuracy are mainly due to system delays (in the first frame). The key point definition are illustrated in the figure below. Please note that we provide 1-5 (PSM1) and 8-12 (PSM3) keypoint labels for all frames, but keypoints 6, 7, 13, and 14 for only a few frames.
+
+<img src="assets/kpt_defination.png" height="180">
+
+### Forward Kinematics & Joint States from dVRK
+The forward kinematics `api_cp_data.yaml` and joint states `api_jp_data.yaml` are obtained using dVRK API `measured_cp()` and `measured_jp()`. These raw data need to be compensated, but the relative value is decent.
+
+### Bounding Boxes and Segmentation Masks
+The bounding boxes of left and right videos are `bbox_left.json` and `bbox_right.json`. Bounding boxes and segmentation masks are assisted annotations for surgical instrument pose estimation. Similar to human pose estimation, top-down methods require bounding box as a part of the input. We provide a reference bounding box label derived from the instance-level SAM 2 segmentation mask (Please note that there are some wrong bounding boxes due to the segmentation error). You can also generate more compact bounding boxes from the keypoint ground truth or use any object detection algorithm if needed.
 
 ### Visualizaion
 1. Keypoints: You may use `kps_vis.py` to visualize keypoints. Run `python kps_vis.py --kpt_path [path to .yaml keypoint files] --frame_dir [path to the folder of frames] --output_dir [path you want to save the frames with keypoints]` to save images with keypoint labels.
@@ -49,25 +70,17 @@ We provide example code for stereo matching based on [RAFT](https://github.com/p
 
 6. Use `` to parse the generated PSM trajectory to make it can be used in Python.
 
-## Robot Movement and Data Collection
+## Data Collection
 
-SurgPose was collected in the [Robotics and Control Laboratory](https://rcl.ece.ubc.ca/) @ UBC. We used da Vinci IS1200 system with the [da Vinci Research Kit](https://github.com/jhu-dvrk) (dVRK). We collected more data for evaluation in the [Laboratory for Computational Sensing and Robotics](https://lcsr.jhu.edu/) @ JHU and used da Vinci SI system with dVRK. 
+SurgPose was collected in the [Robotics and Control Laboratory (RCL)](https://rcl.ece.ubc.ca/) @ UBC. We used da Vinci IS1200 system with the [da Vinci Research Kit](https://github.com/jhu-dvrk) (dVRK). Furture work is to collect extra data for better evaluation in the [Laboratory for Computational Sensing and Robotics (LCSR)](https://lcsr.jhu.edu/) @ JHU. 
 
-### Setup in RCL @ UBC
-The dVRK version is 2.1. Run `python data_collection.py`
-
-### Setup in LCSR @ JHU
-
-## Annotations
-
-### Keypoints
-
-### Forward Kinematics & Joint States from dVRK
-The forward kinematics and joint states are obtained using dvrk API `measured_cp()` and `measured_jp()`. These raw data need to be compensated but the relative value is accurate.
-
-### Segmentation Mask
+After setting up the system, run `python data_collection.py` with the 2.1 version of dVRK.
 
 ## Material List
+- UV reative paint: [GLO Effex Invisible Transparent UV Reactive Paint](https://www.gloeffex.com/collections/best-sellers/products/transparent-uv-paint-blacklight-uv-reactive-intense-glow-and-effect)
+- Black light: [Everbeam 365nm 50W UV LED Black Light](https://www.amazon.ca/dp/B08635F9CX?ref=ppx_yo2ov_dt_b_fed_asin_title&th=1)
+- Paint Brush: [Fine Detail Paint Brush](https://www.amazon.ca/dp/B0C57XKQVP?ref=ppx_yo2ov_dt_b_fed_asin_title)
+- Paint remover: [Corconess Acetone Nail Polish Remover Pads](https://www.amazon.ca/dp/B0D46FT4DK?ref=ppx_yo2ov_dt_b_fed_asin_title)
 
 ## Related Works and Benchmarks 
 
