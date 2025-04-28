@@ -4,7 +4,7 @@
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15278516.svg)](https://doi.org/10.5281/zenodo.15278516)
 
 ## Dataset Description
-The SurgPose dataset can be accessed [here]().
+The SurgPose dataset can be accessed [here](https://doi.org/10.5281/zenodo.15278516).
 
 ### Dataset Structure
 There are 34 folders (000000-000033) of data. Data of each folder has a structure like:
