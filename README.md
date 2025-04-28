@@ -4,7 +4,7 @@
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.11111149.svg)](https://zenodo.org/badge/latestdoi/{github_id})
 
 ## Dataset Description
-The SurgPose dataset can be accessed [here](). If you think the dataset or paper is useful, please consider to [cite](#citation) this paper.
+The SurgPose dataset can be accessed [here]().
 
 ### Dataset Structure
 There are 34 folders (000000-000033) of data. Data of each folder has a structure like:
@@ -44,6 +44,7 @@ After downloading the dataset, you may use `utils/video2images.py` to extract im
 2. Bounding Boxes: You may use `bbox_vis.py` to visualize bounding boxes. Run `python bbox_vis.py --bbox_path [path to .json bbox files] --frame_dir [path to the folder of frames] --output_dir [path you want to save the frames with bounding boxes]` to save images with bbox labels.
 
 ### Data Distribution Details  
+The figure below shows some detailed information of the dataset. We define trajectory 0-19 as the training set and 20-33 as the validation set. Feel free to split the dataset according to your requirement.
 <p align="center">
 <img src="assets/stats.png" height="720">
 </p>
@@ -64,11 +65,11 @@ We provide example code for stereo matching based on [RAFT](https://github.com/p
 
 1. <b>Stereo Camera Calibration:</b> SurgPose includes stereo camera parameters `StereoCalibrationDVRK.ini` deriving from [MATLAB 2024b Stereo Camera Calibration](https://www.mathworks.com/help/vision/ug/using-the-stereo-camera-calibrator-app.html) Application. In `StereoCalibrationDVRK.ini`, k0, k1, k4 refer radial distortion coeffients and k2, k3 infer tangential distortion coeffients.
 
-2. <b>Stereo Matching:</b> Run `python depth_estimator.py -d [path to data, e.g. /SurgPose/000000]`. This script is modified from [Deform3DGS](). Note that the image size of SurgPose is 1400x986. In this example script, to run RAFT, image size need to be resized to the multiple of 8, e.g. 640x512.
+2. <b>Stereo Matching:</b> Run `python depth_estimator.py -d [path to data, e.g. /SurgPose/000000]`. Note that the original image size of SurgPose is 1400x986. In this example script, to run RAFT, the image size needs to be resized to the multiple of 8, e.g., 640x512. Based on RAFT, not all frames can get very accurate depth. Feel free to try other stereo matching methods with stronger performance.
 
 ## Trajectory Generation
 
-1. Define the workspace for PSM1 and/or PSM3 (PSM2).
+1. Define the workspace for PSM1 (right instrument) and/or PSM3 (left instrument).
 
 2. Randomly sample N points in the workspace.
 
@@ -77,8 +78,6 @@ We provide example code for stereo matching based on [RAFT](https://github.com/p
 4. For articulations, we use periodic functions (sine and cosine) to define the trajectory of each degree of freedom (shaft rotation, wrist joint, gripper rotation, and gripper open angle). You may need to modify parameters of these functions to fit your system and applications.
 
 5. After above steps, you are good to run code `trajectory_generator.m` in MATLAB.
-
-6. Use `` to parse the generated PSM trajectory to make it can be used in Python.
 
 ## Data Collection
 
@@ -103,10 +102,10 @@ Here we list a few baselines that can be used for Surgical Instrument Pose Estim
 3. [ViTPose: Simple Vision Transformer Baselines for Human Pose Estimation](https://github.com/ViTAE-Transformer/ViTPose) The annotation need to be reformated to COCO format.
 
 ## Acknowledgement
-We sincerely appreciate [RAFT](), [Segment Anything 2](), [Deform3DGS](). Many thanks to these fantastic works and their open-sourse contribution!
+We sincerely appreciate [RAFT](), and [Segment Anything 2](). Many thanks to these fantastic works and their open-sourse contribution!
 
 ## Citation
-If you feel SurgPose or this codebase is useful, please consider cite this paper:
+If you feel SurgPose or this codebase is helpful, please consider cite this paper:
 ```
 @article{wu2025surgpose,
   title={SurgPose: a Dataset for Articulated Robotic Surgical Tool Pose Estimation and Tracking},
