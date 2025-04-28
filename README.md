@@ -25,8 +25,9 @@ There are 34 folders (000000-000033) of data. Data of each folder has a structur
     └──...
 ### Keypoints
 The `keypoints_left.yaml` and `keypoints_right.yaml` include the keypoint labels of the binocular video. There are a few inaccurate keypoint labels. These inaccuracy are mainly due to system delays (in the first frame). The key point definition are illustrated in the figure below. Please note that we provide 1-5 (PSM1) and 8-12 (PSM3) keypoint labels for all frames, but keypoints 6, 7, 13, and 14 for only a few frames.
-
-<img src="assets/kpt_defination.png" height="180">
+<p align="center">
+<img src="assets/kpt_defination.png" height="220">
+</p>
 
 ### Forward Kinematics & Joint States from dVRK
 The forward kinematics `api_cp_data.yaml` and joint states `api_jp_data.yaml` are obtained using dVRK API `measured_cp()` and `measured_jp()`. These raw data need to be compensated, but the relative value is decent.
