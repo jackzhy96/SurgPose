@@ -4,6 +4,8 @@
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.11111149.svg)](https://zenodo.org/badge/latestdoi/{github_id})
 
 ## Dataset Description
+The SurgPose dataset can be accessed [here](). If you think the dataset or paper is useful, please consider to [cite](#citation) this paper.
+
 ### Dataset Structure
 There are 34 folders (000000-000033) of data. Data of each folder has a structure like:
 
@@ -18,10 +20,10 @@ There are 34 folders (000000-000033) of data. Data of each folder has a structur
     │   ├── StereoCalibrationDVRK.ini                
     │   ├── regular
     │   │    ├── left_video.mp4
-    │   │    ├── right_video.mp4
+    │   │    └── right_video.mp4
     │   └── green (optional)                 
     │        ├── left_video.mp4
-    │        ├── right_video.mp4
+    │        └── right_video.mp4
     └──...
 ### Keypoints
 The `keypoints_left.yaml` and `keypoints_right.yaml` include the keypoint labels of the binocular video. There are a few inaccurate keypoint labels. These inaccuracy are mainly due to system delays (in the first frame). The key point definition are illustrated in the figure below. Please note that we provide 1-5 (PSM1) and 8-12 (PSM3) keypoint labels for all frames, but keypoints 6, 7, 13, and 14 for only a few frames.
@@ -36,6 +38,8 @@ The forward kinematics `api_cp_data.yaml` and joint states `api_jp_data.yaml` ar
 The bounding boxes of left and right videos are `bbox_left.json` and `bbox_right.json`. Bounding boxes and segmentation masks are assisted annotations for surgical instrument pose estimation. Similar to human pose estimation, top-down methods require bounding box as a part of the input. We provide a reference bounding box label derived from the instance-level SAM 2 segmentation mask (Please note that there are some wrong bounding boxes due to the segmentation error). You can also generate more compact bounding boxes from the keypoint ground truth or use any object detection algorithm if needed.
 
 ### Visualizaion
+After downloading the dataset, you may use `utils/video2images.py` to extract images from a video. <b>The FPS MUST be 30</b>. Run `python utils/video2images.py ---video-path [path to the video] --fps 30 --output-dir [where to save images]` to extract images.
+
 1. Keypoints: You may use `kps_vis.py` to visualize keypoints. Run `python kps_vis.py --kpt_path [path to .yaml keypoint files] --frame_dir [path to the folder of frames] --output_dir [path you want to save the frames with keypoints]` to save images with keypoint labels.
 2. Bounding Boxes: You may use `bbox_vis.py` to visualize bounding boxes. Run `python bbox_vis.py --bbox_path [path to .json bbox files] --frame_dir [path to the folder of frames] --output_dir [path you want to save the frames with bounding boxes]` to save images with bbox labels.
 
