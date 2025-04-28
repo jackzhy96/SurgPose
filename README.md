@@ -5,7 +5,7 @@ Accepted by ICRA 2025! See you in Atlanta!
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.11111149.svg)](https://zenodo.org/badge/latestdoi/{github_id})
 
 ## Dataset Description
-This is the assisted annotation. Top-down human pose estimation methods require this label as a part of the input. We provide a reference bounding box label derived from the instance-level SAM 2 segmentation mask. You can also generate the bounding box from the keypoint ground truth or use any object detection algorithm if needed.
+This is the assisted annotation. Top-down human pose estimation methods require this label as a part of the input. We provide a reference bounding box label derived from the instance-level SAM 2 segmentation mask (Please note that there are some wrong bounding boxes due to the segmentation error). You can also generate more compact bounding boxes from the keypoint ground truth or use any object detection algorithm if needed.
 
 ### Annotation Structures
 1. Keypoint:
