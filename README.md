@@ -1,4 +1,4 @@
-# SurgPose: a Dataset for Articulated Robotic Surgical Tool Pose Estimation and Tracking
+# SurgPose: a Dataset for Articulated Robotic Surgical Tool Pose Estimation and Tracking (ICRA'25)
 
 [![arXiv](https://img.shields.io/badge/arXiv-2502.11534-b31b1b.svg)](https://arxiv.org/abs/2502.11534)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.11111149.svg)](https://zenodo.org/badge/latestdoi/{github_id})
@@ -42,6 +42,11 @@ After downloading the dataset, you may use `utils/video2images.py` to extract im
 
 1. Keypoints: You may use `kps_vis.py` to visualize keypoints. Run `python kps_vis.py --kpt_path [path to .yaml keypoint files] --frame_dir [path to the folder of frames] --output_dir [path you want to save the frames with keypoints]` to save images with keypoint labels.
 2. Bounding Boxes: You may use `bbox_vis.py` to visualize bounding boxes. Run `python bbox_vis.py --bbox_path [path to .json bbox files] --frame_dir [path to the folder of frames] --output_dir [path you want to save the frames with bounding boxes]` to save images with bbox labels.
+
+### Data Distribution Details  
+<p align="center">
+<img src="assets/stats.png" height="720">
+</p>
 
 ## SAM2 for Keypoints Annotation
 We provide `kps_annotation_sam2.py` to generate keypoints annotation files. It is adapted from the official SAM2 code.
