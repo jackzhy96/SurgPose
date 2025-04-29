@@ -40,6 +40,8 @@ The bounding boxes of left and right videos are `bbox_left.json` and `bbox_right
 ### Visualizaion
 After downloading the dataset, you may use `utils/video2images.py` to extract images from a video. <b>The FPS MUST be 30</b> to align with keypoint labels. Run `python utils/video2images.py ---video-path [path to the video] --fps 30 --output-dir [path to save images]` to extract images.
 
+**Note: For the `[path to save images]`, we suggest you create the output path as `<your selected parent folder>/left(right)_frames` so that you can run the stereo matching script smoothly.**
+
 1. Keypoints: You may use `kps_vis.py` to visualize keypoints. Run `python kps_vis.py --kpt_path [path to .yaml keypoint files] --frame_dir [path to the folder of frames] --output_dir [path you want to save the frames with keypoints]` to save images with keypoint labels.
 2. Bounding Boxes: You may use `bbox_vis.py` to visualize bounding boxes. Run `python bbox_vis.py --bbox_path [path to .json bbox files] --frame_dir [path to the folder of frames] --output_dir [path you want to save the frames with bounding boxes]` to save images with bbox labels.
 
@@ -67,6 +69,7 @@ We provide example code for stereo matching based on [RAFT](https://github.com/p
 
 2. <b>Stereo Matching:</b> Run `python depth_estimator.py -d [path to data, e.g. /SurgPose/000000] -c [path to the stereo calibration parameters file]`. Note that the original image size of SurgPose is 1400x986. In this example script, to run RAFT, the image size needs to be resized to the multiple of 8, e.g., 640x512. Based on RAFT, not all frames can get very accurate depth. Feel free to try other stereo matching methods with stronger performance.
 
+3. <b>Interactive Depth Viewer</b> Run `python utils/interactive_depth_viewer.py --depth_dir [path to stereo matching generated folder, e.g. /SurgPose/000000/stereo] --idx_frame [index of your selected frame, 0~1000]`. This script can display the estimated depth interactively.
 ## Trajectory Generation
 
 1. Define the workspace for PSM1 (right instrument) and/or PSM3 (left instrument).
