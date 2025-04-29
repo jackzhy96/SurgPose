@@ -1,4 +1,5 @@
 import os
+import sys
 import cv2
 import argparse
 
@@ -34,8 +35,11 @@ if __name__ == "__main__":
                 # cv2.imwrite(os.path.join(output, f"{str(count).zfill(9)}.png"), image)     # save frame as JPEG file      
             success, image = vidcap.read()
             count += 1
+            sys.stdout.write("\r --Frame %s Generated" % count)
+            sys.stdout.flush()
             if count == args.end_frame:
                 break
+        sys.stdout.write("\n")
         
         print("Total frames: ", count)
         print("Done!")

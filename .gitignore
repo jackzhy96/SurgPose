@@ -1,4 +1,5 @@
 *.pt
-\kps_annotation
-\data
-*\__pycache__
+kps_annotation
+data
+__pycache__
+.idea

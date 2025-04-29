@@ -3,6 +3,7 @@ import json
 import matplotlib.pyplot as plt
 import numpy as np
 import cv2
+import sys
 import argparse
 
 def visualize_bbox(bbox_path, frame_dir, output_dir):
@@ -26,7 +27,10 @@ def visualize_bbox(bbox_path, frame_dir, output_dir):
 
         file_name = os.path.join(output_dir, frame)
         cv2.imwrite(file_name, img)
-        print(f"Frame {idx} done!")
+        # print(f"Frame {idx} done!")
+        sys.stdout.write("\r -- Progress %s / %s" % ((idx+1), len(frame_list)))
+        sys.stdout.flush()
+    sys.stdout.write("\n")
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Visualize bounding boxes on frames")
